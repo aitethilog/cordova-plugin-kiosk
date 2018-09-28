@@ -82,13 +82,13 @@ public class KioskActivity extends CordovaActivity {
     protected void onPause() {
         super.onPause();
 
-        if(!isExiting) {
+        if(!isExitingOnPause) {
             ActivityManager activityManager = (ActivityManager) getApplicationContext()
             .getSystemService(Context.ACTIVITY_SERVICE);
             activityManager.moveTaskToFront(getTaskId(), 0);
         }
 
-        isExiting = false;
+        isExitingOnPause = false;
     }
     
     @Override
@@ -107,7 +107,7 @@ public class KioskActivity extends CordovaActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(!hasFocus && !isExiting) {
+        if(!hasFocus && !isExitingFocus) {
             System.out.println("Focus lost - closing system dialogs");
             
             Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
@@ -125,8 +125,8 @@ public class KioskActivity extends CordovaActivity {
                 }
             }, 500); // 0.5 second
         }
-        
-        isExiting = false;
+
+        isExitingFocus = false;
     }
 }
 

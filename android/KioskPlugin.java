@@ -45,7 +45,8 @@ public class KioskPlugin extends CordovaPlugin {
                 return true;
                 
             } else if (EXIT_KIOSK.equals(action)) {
-                KioskActivity.isExiting = true;
+                KioskActivity.isExitingOnPause = true;
+                KioskActivity.isExitingFocus = true;
 
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 intent.addCategory(Intent.CATEGORY_HOME);
