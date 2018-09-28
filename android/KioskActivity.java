@@ -23,6 +23,7 @@ public class KioskActivity extends CordovaActivity {
 
     public static volatile boolean running = false;
     public static volatile Set<Integer> allowedKeys = Collections.EMPTY_SET;
+    public static volatile Boolean isExiting = false;
 
     private StatusBarOverlay statusBarOverlay = null;
 
@@ -80,9 +81,14 @@ public class KioskActivity extends CordovaActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        ActivityManager activityManager = (ActivityManager) getApplicationContext()
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        activityManager.moveTaskToFront(getTaskId(), 0);
+
+        if(!isExiting) {
+            ActivityManager activityManager = (ActivityManager) getApplicationContext()
+            .getSystemService(Context.ACTIVITY_SERVICE);
+            activityManager.moveTaskToFront(getTaskId(), 0);
+        }
+
+        isExiting = false;
     }
     
     @Override
