@@ -36,12 +36,14 @@ public class KioskPlugin extends CordovaPlugin {
             if (IS_IN_KIOSK.equals(action)) {
                 
                 callbackContext.success(Boolean.toString(KioskActivity.running));
+                showAlert("is in kiosk");
                 return true;
                 
             } else if (IS_SET_AS_LAUNCHER.equals(action)) {
                 
                 String myPackage = cordova.getActivity().getApplicationContext().getPackageName();
                 callbackContext.success(Boolean.toString(myPackage.equals(findLauncherPackageName())));
+                showAlert("is set as launcher");
                 return true;
                 
             } else if (EXIT_KIOSK.equals(action)) {
@@ -56,6 +58,7 @@ public class KioskPlugin extends CordovaPlugin {
                 }
                 
                 callbackContext.success();
+                showAlert("exit kiosk");
                 return true;
                 
             } else if (SET_ALLOWED_KEYS.equals(action)) {
@@ -82,6 +85,7 @@ public class KioskPlugin extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
+        showAlert("initialize");
         hideSystemUI();
     }
     
