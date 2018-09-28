@@ -97,7 +97,7 @@ public class KioskActivity extends CordovaActivity {
         // super.finish();
     }
 
-    
+    /*
     // http://www.andreas-schrade.de/2015/02/16/android-tutorial-how-to-create-a-kiosk-mode-in-android/
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -119,7 +119,7 @@ public class KioskActivity extends CordovaActivity {
                     sendBroadcast(closeDialog);
                 }
             }, 500); // 0.5 second
-        }
+        }*/
     }
 }
 
