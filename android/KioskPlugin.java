@@ -125,18 +125,5 @@ public class KioskPlugin extends CordovaPlugin {
             }
         });
     }
-
-    private void showAlert(String content){
-        // see http://developer.android.com/guide/topics/ui/dialogs.html
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
-        alertDialog.setTitle("Alert");
-        alertDialog.setMessage(content);
-        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
-          public void onClick(DialogInterface dialog, int id){
-            // User clicked OK button
-          }
-        });
-        alertDialog.show();
-      }
 }
 

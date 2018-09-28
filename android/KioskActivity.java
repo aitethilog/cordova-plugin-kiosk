@@ -107,7 +107,7 @@ public class KioskActivity extends CordovaActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if(!hasFocus) {
+        if(!hasFocus && !isExiting) {
             System.out.println("Focus lost - closing system dialogs");
             
             Intent closeDialog = new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);
@@ -125,6 +125,8 @@ public class KioskActivity extends CordovaActivity {
                 }
             }, 500); // 0.5 second
         }
+        
+        isExiting = false;
     }
 }
 
