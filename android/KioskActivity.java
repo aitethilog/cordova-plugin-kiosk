@@ -16,7 +16,6 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.LayoutInflater;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
-import android.R.*;
 import java.lang.Integer;
 import java.util.Collections;
 import java.util.Set;
@@ -74,7 +73,7 @@ public class KioskActivity extends CordovaActivity {
         statusBarOverlay = StatusBarOverlay.createOrObtainPermission(this);
 
         // disable status bar swipe
-        RelativeLayout mMainLayout = (RelativeLayout) LayoutInflater.from(this).inflate(R.layout.activity_fullscreen, null);
+        RelativeLayout mMainLayout = (RelativeLayout) LayoutInflater.from(this).inflate(getResources("activity_fullscreen", "layout", getPackageName()), null);
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
