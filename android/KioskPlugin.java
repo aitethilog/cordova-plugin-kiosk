@@ -21,6 +21,7 @@ import java.lang.Integer;
 import java.util.HashSet;
 import android.content.DialogInterface;
 import android.app.AlertDialog;
+import android.R;
 
 public class KioskPlugin extends CordovaPlugin {
     
@@ -32,6 +33,7 @@ public class KioskPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
+            showAlert("Message random");
             hideSystemUI();
             if (IS_IN_KIOSK.equals(action)) {
                 
