@@ -33,8 +33,6 @@ public class KioskPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
-            showAlert("Message random");
-            hideSystemUI();
             if (IS_IN_KIOSK.equals(action)) {
                 
                 callbackContext.success(Boolean.toString(KioskActivity.running));
@@ -79,6 +77,12 @@ public class KioskPlugin extends CordovaPlugin {
             callbackContext.error(e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        hideSystemUI();
     }
     
     @Override
