@@ -66,6 +66,8 @@ public class KioskActivity extends CordovaActivity {
         
         // add overlay to prevent statusbar access by swiping
         statusBarOverlay = StatusBarOverlay.createOrObtainPermission(this);
+
+        hideSystemUI();
     }
 
     @Override
@@ -83,7 +85,13 @@ public class KioskActivity extends CordovaActivity {
             ActivityManager activityManager = (ActivityManager) getApplicationContext()
                     .getSystemService(Context.ACTIVITY_SERVICE);
             activityManager.moveTaskToFront(getTaskId(), 0);
-    }     
+    }
+    
+    @Override
+    public void onResume(boolean multitasking) {
+        super.onResume(multitasking);
+        hideSystemUI();
+    }
     
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -97,6 +105,7 @@ public class KioskActivity extends CordovaActivity {
         // super.finish();
     }
 
+    /*
     // http://www.andreas-schrade.de/2015/02/16/android-tutorial-how-to-create-a-kiosk-mode-in-android/
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -119,6 +128,41 @@ public class KioskActivity extends CordovaActivity {
                 }
             }, 500); // 0.5 second
         }
+    }*/
+
+    private void hideSystemUI() {
+        View mDecorView = cordova.getActivity().getWindow().getDecorView();
+        // Set the IMMERSIVE flag.
+        // Set the content to appear under the system bars so that the content
+        // doesn't resize when the system bars hide and show.
+        mDecorView.setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+        mDecorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                cordova.getActivity().getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION // hide nav bar
+                                | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
+                                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            }
+        });
+    }
+
+    public void alert(String message) {
+        cordova.getActivity().runOnUiThread(new Runnable() {
+            public void run() {
+                webView.loadUrl("javascript:alert('" + message + "');");
+            }
+        });
     }
 }
 
