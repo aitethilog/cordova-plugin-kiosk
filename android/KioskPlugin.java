@@ -19,6 +19,8 @@ import jk.cordova.plugin.kiosk.KioskActivity;
 import org.json.JSONObject;
 import java.lang.Integer;
 import java.util.HashSet;
+import android.content.DialogInterface;
+import android.app.AlertDialog;
 
 public class KioskPlugin extends CordovaPlugin {
     
@@ -30,6 +32,7 @@ public class KioskPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         try {
+            hideSystemUI();
             if (IS_IN_KIOSK.equals(action)) {
                 
                 callbackContext.success(Boolean.toString(KioskActivity.running));
@@ -115,5 +118,18 @@ public class KioskPlugin extends CordovaPlugin {
             }
         });
     }
+
+    private void showAlert(String content){
+        // see http://developer.android.com/guide/topics/ui/dialogs.html
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this.cordova.getActivity(), AlertDialog.THEME_DEVICE_DEFAULT_LIGHT);
+        alertDialog.setTitle("Alert");
+        alertDialog.setMessage(content);
+        alertDialog.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener(){
+          public void onClick(DialogInterface dialog, int id){
+            // User clicked OK button
+          }
+        });
+        alertDialog.show();
+      }
 }
 
