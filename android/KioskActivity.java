@@ -23,7 +23,8 @@ public class KioskActivity extends CordovaActivity {
 
     public static volatile boolean running = false;
     public static volatile Set<Integer> allowedKeys = Collections.EMPTY_SET;
-    public static volatile Boolean isExiting = false;
+    public static volatile Boolean isExitingOnPause = false;
+    public static volatile Boolean isExitingFocus = false;
 
     private StatusBarOverlay statusBarOverlay = null;
 
