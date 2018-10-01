@@ -47,6 +47,9 @@ public class KioskActivity extends CordovaActivity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().addFlags(LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         super.init();
         
@@ -57,8 +60,8 @@ public class KioskActivity extends CordovaActivity {
         loadUrl(launchUrl);
         
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /*getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         
         // https://github.com/hkalina/cordova-plugin-kiosk/issues/14
         View decorView = getWindow().getDecorView();
