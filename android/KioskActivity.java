@@ -57,13 +57,13 @@ public class KioskActivity extends CordovaActivity {
         loadUrl(launchUrl);
         
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        /*getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);*/
         
         // https://github.com/hkalina/cordova-plugin-kiosk/issues/14
         View decorView = getWindow().getDecorView();
         // Hide the status bar.
-        decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);
+        /*decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_FULLSCREEN);*/
         // Remember that you should never show the action bar if the
         // status bar is hidden, so hide that too if necessary.
         ActionBar actionBar = getActionBar();
