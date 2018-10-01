@@ -105,7 +105,7 @@ public class KioskPlugin extends CordovaPlugin {
         // Set the IMMERSIVE flag.
         // Set the content to appear under the system bars so that the content
         // doesn't resize when the system bars hide and show.
-        /*mDecorView.setSystemUiVisibility(
+        mDecorView.setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
@@ -124,7 +124,7 @@ public class KioskPlugin extends CordovaPlugin {
                                 | View.SYSTEM_UI_FLAG_FULLSCREEN // hide status bar
                                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
             }
-        });*/
+        });
     }
 }
 
