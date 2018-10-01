@@ -71,26 +71,6 @@ public class KioskActivity extends CordovaActivity {
         
         // add overlay to prevent statusbar access by swiping
         statusBarOverlay = StatusBarOverlay.createOrObtainPermission(this);
-
-        // disable status bar swipe
-        RelativeLayout mMainLayout = (RelativeLayout) LayoutInflater.from(this).inflate(getApplication().getResources().getIdentifier("activity_fullscreen", "layout", getApplication().getPackageName()), null);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-        WindowManager.LayoutParams handleParams = new WindowManager.LayoutParams(
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.MATCH_PARENT,
-            WindowManager.LayoutParams.TYPE_SYSTEM_ERROR,
-            WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
-                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL |
-                WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN,
-            PixelFormat.TRANSLUCENT);
-        handleParams.gravity = Gravity.TOP;
-
-        WindowManager windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
-        windowManager.addView(mMainLayout, handleParams);
     }
 
     @Override
