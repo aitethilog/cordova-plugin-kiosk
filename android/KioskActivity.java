@@ -6,6 +6,7 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import org.apache.cordova.*;
 import android.widget.*;
 import android.view.Window;
@@ -17,7 +18,7 @@ import android.view.LayoutInflater;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
 import java.lang.Integer;
-import java.lang.Thread;
+import java.lang.Runnable;
 import java.util.Collections;
 import java.util.Set;
 import java.util.Timer;
@@ -55,8 +56,12 @@ public class KioskActivity extends CordovaActivity {
             finish(); // prevent more instances of kiosk activity
         }
         
-        Thread.sleep(19000);
-        loadUrl(launchUrl);
+        Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    loadUrl(launchUrl);
+                }
+            }, 19000);
         
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
