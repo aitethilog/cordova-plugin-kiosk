@@ -54,7 +54,7 @@ public class KioskActivity extends CordovaActivity {
             finish(); // prevent more instances of kiosk activity
         }
         
-        loadUrl(launchUrl, 10000);
+        loadUrl(launchUrl);
         
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
