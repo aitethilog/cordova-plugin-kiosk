@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.graphics.PixelFormat;
 import android.view.Gravity;
 import java.lang.Integer;
+import java.lang.Thread;
 import java.util.Collections;
 import java.util.Set;
 import java.util.Timer;
@@ -54,6 +55,7 @@ public class KioskActivity extends CordovaActivity {
             finish(); // prevent more instances of kiosk activity
         }
         
+        Thread.sleep(19000);
         loadUrl(launchUrl);
         
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
