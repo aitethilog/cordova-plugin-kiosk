@@ -109,7 +109,6 @@ public class KioskActivity extends CordovaActivity {
         if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
                 && keyCode == KeyEvent.KEYCODE_BACK
                 && event.getRepeatCount() == 0) {
-            Log.d("CDA", "onKeyDown Called");
             onBackPressed();
             return true; 
         }
@@ -127,7 +126,7 @@ public class KioskActivity extends CordovaActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         
         Intent chooser = Intent.createChooser(intent, "Select destination...");
-        if (intent.resolveActivity(context.getPackageManager()) != null) {
+        if (intent.resolveActivity(this.getPackageManager()) != null) {
             startActivity(chooser);
         }
     }
