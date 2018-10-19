@@ -119,7 +119,6 @@ public class KioskActivity extends CordovaActivity {
 
     @Override
     public void onBackPressed() {
-        Log.d("CDA", "onBackPressed Called");
         isExitingOnPause = true;
         isExitingFocus = true;
 
@@ -128,8 +127,8 @@ public class KioskActivity extends CordovaActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         
         Intent chooser = Intent.createChooser(intent, "Select destination...");
-        if (intent.resolveActivity(cordova.getActivity().getPackageManager()) != null) {
-            cordova.getActivity().startActivity(chooser);
+        if (intent.resolveActivity(context.getPackageManager()) != null) {
+            startActivity(chooser);
         }
     }
     
