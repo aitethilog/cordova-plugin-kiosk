@@ -105,6 +105,12 @@ public class KioskActivity extends CordovaActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         System.out.println("onKeyDown event: keyCode = " + event.getKeyCode());
+
+        if (keyCode==KeyEvent.KEYCODE_POWER) {
+            isExitingFocus = true;
+            return true;
+        }
+
         return ! allowedKeys.contains(event.getKeyCode()); // prevent event from being propagated if not allowed
     }
     
@@ -118,6 +124,7 @@ public class KioskActivity extends CordovaActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+
         if(!hasFocus && !isExitingFocus) {
             System.out.println("Focus lost - closing system dialogs");
             
