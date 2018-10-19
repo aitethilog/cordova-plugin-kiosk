@@ -61,7 +61,7 @@ public class KioskActivity extends CordovaActivity {
                 public void run() {
                     loadUrl(launchUrl);
                 }
-            }, 15000);
+            }, 16000);
         
         // https://github.com/apache/cordova-plugin-statusbar/blob/master/src/android/StatusBar.java
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -105,30 +105,7 @@ public class KioskActivity extends CordovaActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         System.out.println("onKeyDown event: keyCode = " + event.getKeyCode());
-
-        if (Integer.parseInt(android.os.Build.VERSION.SDK) > 5
-                && keyCode == KeyEvent.KEYCODE_BACK
-                && event.getRepeatCount() == 0) {
-            onBackPressed();
-            return true; 
-        }
-
         return ! allowedKeys.contains(event.getKeyCode()); // prevent event from being propagated if not allowed
-    }
-
-    @Override
-    public void onBackPressed() {
-        isExitingOnPause = true;
-        isExitingFocus = true;
-
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        
-        Intent chooser = Intent.createChooser(intent, "Select destination...");
-        if (intent.resolveActivity(this.getPackageManager()) != null) {
-            startActivity(chooser);
-        }
     }
     
     @Override
